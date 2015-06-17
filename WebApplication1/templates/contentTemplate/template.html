@@ -1,0 +1,65 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>明德网-{@@NewsTitle}</title>
+    <link type="text/css" rel="stylesheet" href="/styles/column.css" />
+</head>
+<body>
+    <div id="wrapper">
+        <div id="wrap">
+            <div id="header"></div>
+            <div id="nav">
+                <ul id="nav_ul">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="/ImageNewsList.aspx">图片新闻</a></li>
+                    <li><a href="/NewsList-17.aspx">新闻快报</a></li>
+                    <li><a href="/NewsList-18.aspx">基层动态</a></li>
+                    <li><a href="/NewsList-19.aspx">理论热点</a></li>
+                    <li><a href="/NewsList-20.aspx">学习文化</a></li>
+                    <li><a href="/NewsList-21.aspx">思政研究</a></li>
+                    <li><a href="/NewsList-22.aspx">思想论坛</a></li>
+                    <li><a href="/NewsList-23.aspx">法制教育</a></li>
+                    <li><a href="/NewsList-24.aspx">文明创建</a></li>
+                    <li><a href="/NewsList-25.aspx">学习资料</a></li>
+                </ul>
+            </div>
+            <div id="navigation">当前位置:{@@Location}</div>
+            <div id="content">
+                <div id="content_list">
+                    <div id="content_hea">{@@NewsTitle}</div>
+                    <div>发布时间：{@@PublishTime} &nbsp;&nbsp;&nbsp;发布人：{@@NewsPublisher} &nbsp;&nbsp;&nbsp;浏览次数:<span id="visitCount"></span> </div>
+                    <div id="content_con">
+                        {@@NewsContent}
+                    </div>
+                    <div id="content-attach">
+                        <a href='{@@NewsAttachPath}' target="_blank">点击下载附件</a>
+                    </div>
+                </div>
+            </div>
+            <div id="footer">
+                <p>版权所有 河南理工大学 中国 河南焦作 高新区 世纪大道2001号 [454000]</p>
+                <p>河南理工大学党委宣传部 （校ICP备03140号） / 主办 河南理工大学党委宣传部 / 技术支持 现代教育中心>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        var newsId = {@@NewsId};
+        function Init() {
+            //如果附件为空则，隐藏附件区
+            var attach = '{@@NewsAttachPath}';
+            if (attach==null||attach=='') {
+                document.getElementById("content-attach").style.display='none';
+            }
+            //加载新闻浏览次数
+            $.post("/Handlers/loadVisitCountHandler.ashx", { "id": newsId }, function (data) {
+                if (data!='error') {
+                    $("#visitCount").text(data);
+                }
+            });
+        }
+        $.ready(Init());
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>明德网</title>
+	<link type="text/css" rel="stylesheet" href="/styles/column.css" />
+</head>
+<body>
+	<div id="wrapper">
+		<div id="wrap">
+			<div id="header"></div>
+			<div id="nav">
+				<ul id="nav_ul">
+					<li><a href="/">首页</a></li>
+					<li><a href="#">图片新闻</a></li>
+					<li><a href="#">新闻快报</a></li>
+					<li><a href="#">基层动态</a></li>
+					<li><a href="#">理论热点</a></li>
+					<li><a href="#">学习文化</a></li>
+					<li><a href="#">思政研究</a></li>
+					<li><a href="#">思想论坛</a></li>
+					<li><a href="#">法制教育</a></li>
+					<li><a href="#">文明创建</a></li>
+					<li><a href="#">学习资料</a></li>
+				</ul>
+			</div>
+			<div id="navigation">当前位置:{@@Location}</div>
+			<div id="content">
+				<div id="content_list">
+					<ul id="newsList"></ul>
+				</div>
+				<div id="page"><a href="#">首页</a>&nbsp;&nbsp;<a href="#">上一页</a>&nbsp;&nbsp;<a href="#">下一页</a>&nbsp;&nbsp;<a href="#">尾页</a></div>
+			</div>
+			<div id="footer">
+				<p>版权所有 河南理工大学 中国 河南焦作 高新区 世纪大道2001号 [454000]</p>
+				<p>河南理工大学党委宣传部 （校ICP备03140号） / 主办 河南理工大学党委宣传部 / 技术支持 现代教育中心>
+			</div>
+			</div>
+		</div>
+    <script type="text/javascript" src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/PageBar.js"></script>
+    <script type="text/javascript">
+        var curId = {@@CategoryId};
+        var pIndex=0;
+        var pSize=10;
+        function Init() {
+            pIndex = pIndex + 1;
+            //加载新闻列表
+            $.post("/Handlers/loadNewsHandler.ashx", { "tId": curId,"pIndex":pIndex,"pSize":pSize }, function (data) {
+                if (data!='error') {
+                    var news = JSON.parse(data);
+                    var htmlData='';
+                    //alert(news.Items.length);
+                    if (news.Items.length>0) {
+                        for (var i = 0; i < news.Items.length; i++) {
+                            htmlData+='<li><a href="'+news.Items[i].NewsPath+'"> '+news.Items[i].NewsTitle+'</a><span class="span_rig">2015-09-09</span></li>';
+                        }
+                        $("#newsList").html(htmlData);
+                        makePageBar(Init,page,news.PageIndex,news.PageCount,3,news.RowsCount);
+                    }else{
+                        $("#content_list").html('暂无数据  -_- ');
+                    }   
+                }else{
+                    alert('内容加载失败 -_-');
+                }
+            });
+        }
+        $.ready(Init());
+    </script>
+</body>
+</html>

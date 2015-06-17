@@ -1,0 +1,109 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="WebApplication1.Admin.Admin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>后台管理</title>
+    <link href="/styles/cms.css" type="text/css" rel="stylesheet" />
+    <script src="/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="/Scripts/jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
+    <link href="/Scripts/jquery-easyui-1.4.2/themes/metro/easyui.css" rel="stylesheet" />
+    <style type="text/css">
+        #nav_ul li{
+            font-size:16px;
+            line-height:22px;
+            width:200px;
+        }
+        #nav_ul a{
+            font-size:14px;
+            color:#666666;
+            text-decoration:none;
+            line-height:20px;
+        }
+            #nav_ul li ul {
+                margin:4px;
+                font-size:14px;
+                line-height:20px;
+            }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+<div id="wraper">
+    <div id="wrap">
+        <!--header-->
+        <div id="header">
+            <div id="header_logo" onclick="location.href='Default.aspx'"></div>
+            <div id="header_user">欢迎你,管理员 
+                <select name="oper" onchange="Operate(this.value)">
+                    <option selected="selected">请选择操作</option>
+                    <option value="1">修改密码 </option>
+                    <option value="-1">退出登录</option>
+                </select>
+<%--  <input type="button" name="logout" style="background:#edeaea;width:80px;height:30px;border:1px #c8c7cc solid;border-radius:5px;" id="logout" onclick="logOut()" value="退出登录" />--%>
+            </div>
+        </div>
+        <!--header-->
+        <!--sidebar-->
+        <div id="sidebar">
+            <div id="information" style="padding-left:50px">
+                <%--<asp:ContentPlaceHolder runat="server" ID="sideBaeNav"></asp:ContentPlaceHolder>--%>
+                <ul class="easyui-tree" id="nav_ul">
+                    <li><a href="default.aspx">信息管理</a> </li>
+                    <li><a href='columnManage.aspx'>栏目管理</a></li>
+                    <li><a href="ContentManage.aspx">内容管理</a></li>
+                    <li><a href="RecycleContent.aspx">内容回收站</a></li>
+                    <li><span>资源管理</span>
+                        <ul>
+                            <li><a href="ResourceManage-0.aspx">CSS管理</a></li>
+                            <li><a href="ResourceManage-1.aspx">JS管理</a></li>
+                        </ul>
+                        <li><span>模板管理</span>
+                            <ul>
+                                <li><a href="ResourceManage-2.aspx">内容页模板管理</a></li>
+                                <li><a href="ResourceManage-3.aspx">栏目页模板管理</a></li>
+                            </ul>
+                        </li>
+                    </li>
+                </ul>
+            </div>
+            <div id="user_manage"><a href="UserManage.aspx">管理员管理</a></div>
+        </div>
+        <!--sidebar-->
+        <!--content-->
+        <div id="content">
+            <form runat="server">
+                <asp:ContentPlaceHolder runat="server" ID="MainContent" EnableViewState="false"></asp:ContentPlaceHolder>
+            </form>
+        </div>
+        <!--content-->
+        <div style="clear:both;"></div>
+        <div id="footer">
+            <div id="foot">
+                <p class="p_top">网站后台管理中心</p>
+                <p class="p_bottom">&copy; 版权所有  行思工作室  </p>
+            </div>
+        </div>
+    </div>
+</div>
+    <script type="text/javascript">
+        function logOut() {
+            $.post("/Admin/LogOutHandler.ashx", function (data) {
+                if (data == "true") {
+                    window.location.href = '/Admin/login.html';
+                }
+            });
+        }
+        function Operate(val) {
+            if (val < 0) {
+                logOut();
+            } else {
+                window.location.href = '/Admin/UpdatePwd.aspx';
+            }
+        }
+    </script>
+</body>
+</html>

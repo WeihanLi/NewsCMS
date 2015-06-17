@@ -1,0 +1,40 @@
+﻿<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>后台登录 - 网站后台管理中心</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="/styles/login.css">
+</head>
+<body>
+	<div id="content">
+		<div id="logo"><img src="../images/logo.png" alt="logo"></div>
+        <form action="LoginHandler.ashx" id="loginForm" method="post">
+            <div id="box-login">
+                <span><i><img src="../images/username.png" alt="username"></i><input type="text" required="required" id="username" name="username" placeholder="Username"></span><br />
+                <span><i><img src="../images/password.png" alt="password"></i><input type="password" required="required" id="password" name="password" placeholder="Password"></span>
+                <div id="button-login" onclick="login()">登录</div>
+                <div>登录有问题？ <a href="#">请联系超级管理员</a></div>
+                <input type="hidden" name="action" value="login"/>
+            </div>
+        </form>
+		<div id="footer">2015 &copy; 大学生网络工作室</div>
+	</div>
+    <script type="text/javascript">
+        function login() {
+            var uid = document.getElementById("username");
+            var pwd = document.getElementById("password");
+            if (uid.value == null || uid.value == "" || pwd.value == "" || pwd.value == null) {
+                alert('要输入用户名和密码才可以登陆哦~~~');
+                return;
+            }
+            document.getElementById("loginForm").submit();
+        }
+        document.onkeydown = function (e) {
+            if (e.keyCode == 13) {
+                login();
+                }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+*{margin:0px;padding:0px;font-family:'黑体';}
+img{border:0px;}
+a:link{font-size:12px;color:#000;font-family:'黑体';}
+a:visited{font-size:12px;color:#000;font-family:'黑体';}
+a:hover{font-size:12px;color:#000;font-family:'黑体';}
+#wrapper{width:100%;height:auto;}
+#wrap{width:1000px;height:auto;margin:0px auto;}
+#header{width:1000px;height:240px;background:url('../images/header.jpg');}
+#nav{width:1000px;height:40px;background:#ed1b24;}
+#nav_ul{width:990px;height:40px;margin:0px auto;}
+#nav_ul li{width:90px;height:40px;float:left;list-style:none;text-align:center;line-height:40px;}
+#nav_ul li a{width:90px;height:40px;color:#fcfc03;display:block;text-decoration:none;font-size:16px;}
+#nav_ul li a:hover{text-decoration:underline;}
+#navigation{width:960px;height:40px;border:1px #ed1b24 solid;margin:15px auto;font-size:16px;font-family:'黑体';line-height:40px;padding-left:20px;}
+#navigation a{font-size:16px;font-family:'黑体';text-decoration:none;}
+#navigation a:hover{text-decoration:underline;}
+#content{width:980px;min-height:400px;border:1px #ed1b24 solid;margin:0px auto;}
+#content_list{width:880px;min-height:400px;margin:10px auto;}
+#content_list ul{width:880px;min-height:400px;}
+#content_list ul li{width:880px;height:32px;border-bottom:1px #ccc dashed;list-style:none;line-height:32px;background:url('../images/list_icon.jpg') no-repeat left center;font-size:14px;color:#000;}
+#content_list ul li a{width:770px;height:32px;padding-left:20px;font-size:14px;text-decoration:none;overflow:hidden;}
+#content_list ul li a:hover{text-decoration:underline;}
+.span_rig{float:right;}
+#page{width:880px;height:40px;margin:10 auto;font-size:16px;font-family:'黑体';line-height:40px;text-align:center;}
+#page a{font-size:16px;text-decoration:none;}
+#page a:hover{text-decoration:underline;}
+/*content_style*/
+#content_hea{width:880px;height:40px;font-size:20px;text-align:center;line-height:40px;margin:10px auto;font-family:'宋体';border-bottom:1px #ed1b24 solid;font-weight:bold;}
+#content_con{width:880px;min-height:400px;font-size:14px;color:#000;text-indent:28px;line-height:27px;}
+/*content_style*/
+#footer{width:975px;height:70px;margin-top:10px;}
+#footer p{line-height:25px;text-align:center;font-size:14px;color:#000;}
